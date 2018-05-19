@@ -7,11 +7,16 @@
 
 1. What is the role of the network layer? What does we call the **protocol data unit** (PDU) associated with the network layer? (With the transport layer?)
 
+    Transport layer **segments** are encapsulated in network layer **packets**. The network layer handles the routing/switching of traffic between clients and server.
+
 2. Which **planes** comprise the transport layer. Which is "on top"?
+    The **data plane**, underpinned by the **control plane**. The data plane handles moving data between physical interfaces of a router, whereas the control plane handles working out the path that the data actually needs to take (and hence controlling the routing that happens on the data plane).
 
 3. What distinctions might someone make between **forwarding** and **routing**? Can you think of nice analogies?
+    Forwarding involves sending a packet to a destination based on precomputed/supplied information (e.g. a switch just looks at the destination MAC and forwards the packet to the appropriate iface), whereas routing requires actually computing the path for the packet to take based on destn IP.
 
 4. How are **forwarding tables** (FIB) likely to differ from **routing tables** (RIB)?
+    Forwarding table stores MAC -> Interface, whereas Routing tables store IP -> Interface (which requires more computation, using routing algorithms).
 
 ---
 
