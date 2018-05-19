@@ -241,29 +241,57 @@
 
 1. "_BGP is arguably the **most important** of all the Internet protocols (the only other contender would be the IP protocol ...)_" [KR-423]: What important role does it serve?
 
+    Allow for routing of data between ASes.
+
 2. How are BGP messages sent? Who/what sends BGP messages? (ASs or routers? Protocol?)
+
+    Sent by boundary/gateway routers of ASes. Sent over TCP.
 
 3. Contrast BGP **gateway** routers and **internal** routers? (If BGP is an **inter**-AS protocol, why mention internal routers?)
 
+    BGP gateway routers need to tell internal routers which traffic to forward to them, so that they can pass the traffic onto other ASes. This is done using internal BGP.
+
 4. What kind of "addresses" appear in BGP forwarding tables?
+
+    ?? IP? IP Subnets?
 
 5. What is a BGP **route**?
 
+    A route between ASes (where ASes are the nodes)
+
 6. Explain the `NEXT_HOP` attribute. What is the `NEXT_HOP` if the destination subnet is contained in the current AS?
+
+    Tells the reciever the specific router in the next AS to forwards the traffic to. ???
 
 7. Explain the `AS_PATH` **attribute**. Why store the entire path? Isn't it good enough to know the next hop and destination?
 
+    Prevents loops, pick the shortest `AS_PATH`
+
 8. What is **hot potato routing**? (Is it an alternative to OSPF shortest-path routing?)
+
+    No, hot-potato routing is used to determine the internal boundary router to forward the traffic to (to pass on to other ASes). The actual internal path still uses OSPF.
 
 9. Explain the BGP **route selection algorithm**. What is the `LOCAL_PREF` attribute? Why does Step 2 come before Step 3?
 
+    `LOCAL_PREF` is the administrator-defined preference for certain routes. ?? what is step 2/3??
+
 10. Describe the **routing policy** typically adopted by commercial ISPs (in the absence of negotiated agreements).
+
+    Only route traffic through my (ISP) network if it's sent by or destined for my customers.
 
 11. What is a **dual/multi-homed** ISP? Why is BGP-style routing policy particularly relevant in this case?
 
+    Attatched to two or more ASes. We need routing policy to stop traffic between these two or more ASes from being routed *through* us.
+
 12. How does BGP's **path vector** routing compare with DV- and LS routing?
 
+    The stored path can prevent issues like infinite loops. Different from LS because not all costs of all links are known to all ASes (well, links have no cost data passed around).
+
 13. Why are different protocols used for **inter-AS** and **intra-AS** routing?
+
+    Inter-AS: Policy is important, to prevent routes we don't want etc.
+
+    Intra-AS: (Usually) Performance is the most important.
 
 ---
 
