@@ -10,12 +10,15 @@
     Transport layer **segments** are encapsulated in network layer **packets**. The network layer handles the routing/switching of traffic between clients and server.
 
 2. Which **planes** comprise the transport layer. Which is "on top"?
+
     The **data plane**, underpinned by the **control plane**. The data plane handles moving data between physical interfaces of a router, whereas the control plane handles working out the path that the data actually needs to take (and hence controlling the routing that happens on the data plane).
 
 3. What distinctions might someone make between **forwarding** and **routing**? Can you think of nice analogies?
+
     Forwarding involves sending a packet to a destination based on precomputed/supplied information (e.g. a switch just looks at the destination MAC and forwards the packet to the appropriate iface), whereas routing requires actually computing the path for the packet to take based on destn IP.
 
 4. How are **forwarding tables** (FIB) likely to differ from **routing tables** (RIB)?
+
     Forwarding table stores MAC -> Interface, whereas Routing tables store IP -> Interface (which requires more computation, using routing algorithms).
 
 ---
@@ -24,20 +27,37 @@
 
 1. What are the constituent parts of a **graph**? Recall alternative terms for each constituent.
 
+    Nodes (routers), edges (verticies, links)
+
 2. What is a **path** in a graph? What is the **length** of a path? What is the **cost** of path? What is a **least-cost** path? In what sense is a **shortest path** a **least-cost** path? Are least-cost paths **unique**?
 
 3. Describe how routing protocols may be characterised/classified with respect to:
     - communication pattern
     - awareness for network **topology**
     - awareness for link **congestion**
+    
+    a. Communication Pattern: ??? *is this SDN vs. traditional?*
+    
+    b. Network Topology awareness: Link-state RP knows the entire network topology, whereas distance vector RPs only need to know cost to neighbours
+    
+    c. RPs which update weights based on congestion can be considered more dynamic. Ones that don't really change link weights based on congestion can be considered more static.
+    
 
 4. **Link costs** are also called **administrative weights**: Discuss this terminology.
 
+    Because an network admin can define a policy, and thus the link costs can depend on administrative policy
+
 5. Must link costs be symmetric (i.e. `c(u, v) == c(v, u)`)? Discuss.
+
+    ??? Examples explored in class are (all undirected graphs), but this doesn't appear to be a requirement? 
 
 6. Under what condition(s) is a complete set of least-cost paths guaranteed to exist?
 
+    If it's a complete graph then surely a set of least-cost paths must exist.
+
 7. What are **routing loops**? Do routing loops actually give rise to infinite cycling? Discuss.
+
+    In the case of Distance Vectors, due to the slow propogation of information, a packet can be passed in a loop continiously because each router **thinks** a different path is optimal. In reality this doesn't result in inf cycling because the packet's TTL would expire.
 
 ### 5.2.1. LS Routing
 
