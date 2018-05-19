@@ -63,33 +63,65 @@
 
 1. Recall examples of real LS protocols.
 
+    Dijkstras Algorithm
+
 2. What does **link-state** refer to in "LS routing algorithm/protocol?
+
+    Requires knowledge of every link in the network in order to calculate the path
 
 3. What is the purpose of a **link-state broadcast**? Why "broadcast"?
 
+    To distribute information about link costs. Broadcast because it is sent to every router on the network.
+
 4. What steps would be involved in a **link-state broadcast**?
+
+    Collect information about the costs of links adjacent to you, then broadcast said information to the rest of the network.
 
 5. What is the correct pronunciation of **Dijkstra**?
 
+    *why is this a question*
+
 6. What inputs does Dijkstra's algorithm require? What outputs does it produce?
+
+    A list of nodes, and a list of edges and their associated weights
 
 7. What other data structure is required internally?
 
+    a. A set of nodes for which the minimal cost path has already been determined
+
+    b. A set of estimated costs to get to the rest of the nodes
+
 8. Describe the initialization phase of Dijkstra's algorithm.
+
+    For nodes adjacent to the start node, write the costs to them to the set of estimated costs. Make the estimates for the rest of the nodes infinite.
 
 9. Describe each step of the "main loop". How are ties resolved?
 
+    Add the lowest cost estimate to the finalised set. Then, using this, re-calculate the costs for everything else. The way ties are broken doesn't matter.
+
 10. How many steps does (vanilla)) algorithm require to solve the single-source least-cost path problem? Justify the claim of **quadratic complexity**.
+
+    n^2, where n is the number of nodes. We go through n nodes and it takes n time (in a basic implementation) to find the minimum next node to access. Relaxation then takes n time.
 
 11. How might this complexity be reduced?
 
+    A different data structure to store the estimated costs, like a priority queue can reduce the time it takes to find the minimum next node below n time.
+
 12. Describe how the **density** of the graph affects run-time?
+
+    The denser the graph, the longer relaxation takes. This doesn't affect big-O run time (as that's worst case).
 
 13. Which parts of the LS algorithm involve inter-node communication?
 
+    Acquiring the costs of each link
+
 14. How would we compute the **forwarding table** from the outputs of Dijkstra's algorithm?
 
+    Checking the "next hop" from the source, for the path to each destination (we can do this by going through the predecessor list)
+
 15. Can a link-state scheme produce **routing loops**? Discuss.
+
+    No, assuming all nodes are updated simultaneously, using the same information.
 
 ### 5.2.2. DV Routing
 
