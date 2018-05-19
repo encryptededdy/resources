@@ -63,7 +63,7 @@
 
 1. Recall examples of real LS protocols.
 
-    Dijkstras Algorithm
+    OSPF (Open Shortest Path First)
 
 2. What does **link-state** refer to in "LS routing algorithm/protocol?
 
@@ -127,23 +127,47 @@
 
 1. Recall examples of real DV protocols.
 
+    BGP
+
 2. In "**distance-vector** (DV) protocol/algorithm", what does "distance-vector" refer to?
+
+    ?? We work with vectors of distances between nodes?
 
 3. How does the DV algorithm we have discussed relate to "the" [Bellman-Ford](https://en.wikipedia.org/wiki/Bellman–Ford_algorithm) algorithm?
 
+    We are essentially computing Bellman-Ford, except each router is computing it on their own without a view of the "whole" network.
+
 4. What inputs are required by each router in a DV protocol?
+
+    The distance vector / distance table from it's immediate neighbours, along with knowledge of the costs of edges it's next to.
 
 5. Recall and describe the **dynamic programming** equation? What does it characterize?
 
+    The distance from x to y is the minimum of the distance from x to any node v, plus the distance from v to y.
+
 6. How is the equation **relaxed** in the DV algorithm? Describe the minimization that takes place at each step.
+
+    When we recieve updated information of the distance from our neighbouring nodes to other nodes, we update our own table based on the DP equation using this new information.
 
 7. Why do we call the DV procedure **iterative**, **asynchronous**, **distributed**?
 
+    a. Because many iterations of the same algorithm occur before arriving at the optimal solution.
+
+    b. Not all nodes compute simultaneously
+
+    c. All nodes compute their own table
+
 8. What would happen if a link cost changed? (Why might it have changed?)
+
+    The cost change slowly propogates through the network
 
 9. Can the DV iteration produce **routing loops**? Explain.
 
+    Yes. e.g. If a link were to go down and not all nodes were updated, a packet can just be constantly chucked between two routers.
+
 10. Describe the symptom of the **count-to-infinity** problem and explain the underlying cause. Does an effective remedy exist?
+
+    If a link is broken, the cost of the link may count (very) slowly towards infinity. There does not exist a 100% effective remedy.
 
 ### 5.2.1-2. Routing protocols
 
