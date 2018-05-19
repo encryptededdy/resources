@@ -189,27 +189,51 @@
 
 1. What is an **autonomous system** (**AS**)? What is the relationship between **ISP** and **AS**? (Are they the same?)
 
+    An AS is a network administratored by the same adminstrator. The internet is a network of ASes. Usually an ISP is its own AS, but not necessairly.
+
 2. How are autonomous systems addressed? Who allocates these addresses?
+
+    ?? AS number? ICANN?
 
 3. What explains/motivates/justifies the partitioning of the Internet into **autonomous systems**?
 
+    You can't store all internet devices in a routing table lol
+
 4. What does OSPF stand for? (What does this tell us?)
+
+    Open Shortest Path First - It's a open standard, and works based on shortest path
 
 5. What type of routing protocol does it employ?
 
+    Link-State (Dijkstra)
+
 6. How are OSPF messages transmitted? What does this imply?
+
+    Over IP, as broadcast. This implies it's link state as each router shares its information with every other router.
 
 7. How are OSPF link costs (**administration weights**) assigned?
 
+    By the network administrator, based on ToS requirements.
+
 8. When do OSPF routers broadcast link-state information?
+
+    When costs change.
 
 9. Which "advanced features" does OSPF provide?
 
+    Secure and multiple shortest-paths allowed. Hierachical OSPF allowed.
+
 10. What is an OSPF **area**? How do areas limit the complexity of routing?
+
+    Routers in each area only need to have a routing table for their area. To access the rest of the AS, go through a border router to access the backbone (which is its own area)
 
 11. How are areas identified (addressed)?
 
+    ?? By the administrator?
+
 12. Describe each category of router in OSPF. What is the difference between an **Area Border Router** (ABR) and a **Backbone Router** (BR)?
+
+    Area Border router links backbone <-> area, whereas backbone links areas together and to the boundary router (to access other ASes)
 
 ---
 
