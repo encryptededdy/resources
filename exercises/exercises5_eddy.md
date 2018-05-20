@@ -299,13 +299,27 @@
 
 1. Recall examples of [**middleboxes**](https://en.wikipedia.org/wiki/Middlebox) whose functions can be performed by SDN systems.
 
+    Firewalls
+
 2. In what ways does "generalized" forwarding generalize traditional **destination-based forwarding**? (Is "generalized forwarding" standard/official terminology?)
+
+    It's generalised because we can perform fowarding based on any rule supported by OpenFlow, (incl. traditional destination forwarding), but also forwarding based on other rules like port number.
 
 3. What happens if a packet matches more than one flow table pattern?
 
+    There's a priority for each patter to determine which one is used.
+
 4. How are forwarding/flow tables populated?
 
+    By the SDN controller, via. OpenFlow API to network appliances.
+
 5. What are forwarding devices typically referred to at L2? At L3? In SDN?
+
+    L2: Switches
+
+    L3: Routers
+
+    SDN: Network Elements(??)
 
 6. Packet matching fields from the [OpenFlow 1.0 Specifications](https://www.opennetworking.org/images/stories/downloads/sdn-resources/onf-specifications/openflow/openflow-spec-v1.0.0.pdf#page=22) are shown below: What do `src`, `dst`, `dl`, `nw`, and `tp` refer to? Contrast `in` and `src`.
 
@@ -332,17 +346,31 @@ uint16_t tp_dst;              // TCP/UDP destination port
 OFP_ASSERT(sizeof(struct ofp_match) == 40); // bytes
 ```
 
+    Source, Destination, Data Link (Link Layer), Network, Transport
+
 7. Describe typical **counters** in OpenFlow tables.
+
+    Packets, bytes, duration etc.
 
 8. How might the various types of **actions** in  OpenFlow relate to traditional network applications?
 
+    Discard - Firewall
+
+    Forward - Router, Load Balancer
+
 9. Which fields are not available for matching in OpenFlow 1.0? Why not?
+
+
 
 ## 5.5. SDN: Control Plane
 
 1. What distinguishes SDN from "traditional" routing?
 
+    Control plane seperated from data plane, into a SDN controller
+
 2. Has **unbundling** has been beneficial for consumers in another market? Discuss.
+
+    PC Market... rip IBM
 
 3. How do SDN-capable **packet switches** compare with "traditional" L3 **routers**?
 
@@ -378,7 +406,7 @@ OFP_ASSERT(sizeof(struct ofp_match) == 40); // bytes
 
 ---
 
-## 5.7. Network Management and SNMP
+## 5.7. Network Management and SNMP (Not in test)
 
 1. Identify the key components of network management and given an example or description of each
 
